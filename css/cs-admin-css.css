@@ -1,0 +1,21 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13-Jun-2018, 11:20:19
+    Author     : Sami
+*/
+
+.coursetitle:hover {text-decoration: underline; cursor: pointer; color: #2271b1;}
+
+table.csTable {width:100%; border-top:2px solid #555; margin-bottom:40px;}
+.csTable td,.csTable th {padding:15px; border-bottom:1px solid #cccccc; font-weight:normal; vertical-align: top;}
+.csTable td.noborder,.csTable th.noborder {border:none;}
+.csTable td {background:#FFF; color:#121212;}
+.csTable tbody tr:hover td {background:#fafafa;}
+.csTable th,.csTable thead td {font-weight:bold; background: #777; color: #fff;}
+.csTable tfoot td {background:#eee;}
+
+.csTable.horizontal th {text-align: right;}
