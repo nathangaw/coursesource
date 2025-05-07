@@ -1,0 +1,19 @@
+{
+    "name": "coursesource/woocommerce",
+    "description": "A Wordpress plugin to allow WooCommerce to interact with Course-Source.net",
+    "type": "wordpress-plugin",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Coursesource\\": "includes/Coursesource"
+        }
+    },
+    "authors": [
+        {
+            "name": "Clive Sweeting",
+            "email": "info@sweet-apple.co.uk"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {}
+}

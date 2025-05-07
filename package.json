@@ -1,0 +1,26 @@
+{
+  "name": "coursesource-plugin",
+  "version": "2.3.5",
+  "description": "Course Source Woocommerce Plugin using Webpack",
+  "main": "index.js",
+  "scripts": {
+    "start": "wp-scripts start --webpack-src-dir=resources --output-path=assets",
+    "build": "wp-scripts build --webpack-src-dir=resources --output-path=assets",
+    "start:custom": "wp-scripts start ./index.js ./js/cs-checkout.js ./js/cs-student.js ./js/cs-admin.js ./js/hystmodal.min.js",
+    "build:custom": "wp-scripts build ./index.js ./js/cs-checkout.js ./js/cs-student.js ./js/cs-admin.js ./js/hystmodal.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/corelearning/wordpress-plugin.git"
+  },
+  "private": true,
+  "devDependencies": {
+    "@wordpress/scripts": "^22.5.0",
+    "path": "^0.12.7",
+    "webpack-remove-empty-scripts": "^1.0.4"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "html-react-parser": "^5.2.3"
+  }
+}

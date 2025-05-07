@@ -1,0 +1,159 @@
+.cs-modal{
+
+  &-close{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: calc(-2rem + 2px);
+    right: calc(-2rem + 2px);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 2rem;
+    border: 2px solid white;
+    background-color: black;
+    color: white;
+
+    &:hover{
+      cursor: pointer;
+      background-color: white;
+      border-color: black;
+      color: black;
+    }
+
+    &-inner{
+      font-size: 1.6rem;
+    }
+
+  }
+
+  &-button-actions{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+
+    .btn{
+      color: white;
+      background-color: lightgray;
+      &:hover{
+        opacity: 0.5;
+      }
+
+      &-action{
+        background-color: black;
+        margin-right: 1rem;
+        margin-left: auto;
+      }
+
+    }
+  }
+
+}
+
+
+.cs-checkout-groups{
+
+  &-radio{
+    margin-right: 1rem !important;
+  }
+
+  &-input{
+    width: 100%;
+    padding: 0.5rem;
+    line-height: 1.5;
+    border: 1px solid white;
+
+    &.form-error{
+      border-color: red;
+      background-color: pink;
+    }
+
+  }
+
+  &-modal-inner{
+    position: fixed;
+    display: block;
+    padding: 20px;
+    width: 80vw;
+    max-width: 60rem;
+    top: 50vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 2px solid black;
+    border-radius: 1rem;
+    color: black;
+
+    .form-row{
+      color: black;
+
+      label{
+        line-height: 1 !important;
+      }
+    }
+
+    p.form-error {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: red;
+    }
+
+  }
+
+}
+
+.theme-elm{
+  .cs-modal {
+
+    &-close{
+      background-color: #3c1362;
+      border-color: white;
+      color: white;
+
+      &:hover{
+        background-color: white;
+        border-color: #3c1362;
+        color: #3c1362;
+      }
+    }
+
+    &-button-actions{
+      color: white;
+
+      .btn{
+        color: #3c1362;
+        background-color: white;
+        &-action{
+          color: white;
+          background-color: #55b947;
+        }
+      }
+    }
+  }
+
+  .cs-checkout-groups {
+    &-modal-inner {
+      background-color: #3c1362;
+      border-color: white;
+      color: white;
+      font-family: Open Sans, sans-serif;
+
+      .form-row{
+        margin-bottom: 0.75rem;
+        color: white;
+        font-size: 18px;
+      }
+
+      p.form-error{
+        font-size: 15px;
+      }
+
+    }
+
+    &-input{
+      padding: 2px;
+      color: #333;
+    }
+  }
+
+}

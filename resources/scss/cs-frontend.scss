@@ -1,0 +1,124 @@
+a {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.alert {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #fff;
+  line-height: 24px;
+}
+
+.alert.info {
+  border-color: #408EFA;
+  background: #c5dbf877;
+  color: #408EFA;
+}
+
+.alert.success {
+  color: #029500;
+  border-color: #029500;
+  background: #e5f9e5;
+}
+
+.alert.error {
+  color: #f33;
+  border-color: #f33;
+  background: #ffe8e8;
+}
+
+.alert.small {
+  padding: 10px;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.enrolmentRow {
+  background-color: #d7d7d7;
+}
+
+.myCourseDataContainer {
+  display: none;
+}
+
+.myCoursesTable {
+  margin-bottom: 30px;
+}
+
+table.csTable {
+  width: 100%;
+  border-top: 2px solid #555;
+  margin-bottom: 40px;
+}
+
+table.csTable td,
+table.csTable th {
+  padding: 15px;
+  border-bottom: 1px solid #cccccc;
+  font-weight: normal;
+  vertical-align: top;
+}
+
+table.csTable th.cs-courses-table-td {
+  background: #777;
+  font-weight: bold;
+  color: #fff;
+}
+
+table.csTable td.cs-courses-table-td {
+  background: #FFF;
+  color: #121212;
+}
+
+table.csTable td.noborder,
+table.csTable th.noborder {
+  border: none;
+}
+
+table.csTable tbody tr:hover td {
+  background: #fafafa;
+}
+
+table.csTable tfoot td {
+  background: #eee;
+}
+
+#cs_overlay {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: #fff;
+  text-align: center;
+}
+
+.cs_iframe {
+  position: relative;
+  z-index: 10000;
+  width: 90vw;
+  height: 90vh;
+  margin: 5vh 5vw;
+  background-color: #fff;
+  text-align: center;
+}
+
+.cs_iframe-close{
+  position: absolute;
+  z-index: 10001;
+  top : calc(5vh - 1.5rem);
+  right: calc(5vw - 1.5rem);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1;
+  background-color: white;
+  border: 2px solid black;
+  color: black;
+  cursor: pointer;
+}
