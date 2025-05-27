@@ -270,7 +270,8 @@ class Api {
         $loginID = $this->get_coursesource_login_id_from_user( $userID );
 
         $params = [ $loginID, $courseID ];
-        return $this->do_jsonRpc( $method, $params )->result;
+        $resp   = $this->do_jsonRpc( $method, $params )->result;
+        return $resp;
     }
 
 
@@ -291,13 +292,17 @@ class Api {
 
         $method = 'getMyCourseData';
         $params = array( $loginID, $enrolID );
-        return $this->do_jsonRpc( $method, $params )->result;
+        $resp   = $this->do_jsonRpc( $method, $params )->result;
+
+        return $resp;
     }
 
     public function api_getDurations( $courseID ) {
         $method = 'getDurations';
         $params = array( $courseID );
-        return $this->do_jsonRpc( $method, $params )->result;
+        $resp   = $this->do_jsonRpc( $method, $params )->result;
+
+        return $resp;
     }
 
 
@@ -329,7 +334,8 @@ class Api {
             $BasketID,
             [ (int) $BasketItemIDs ],
         ];
-        return $this->do_jsonRpc( $method, $params )->result;
+        $resp    = $this->do_jsonRpc( $method, $params )->result;
+        return $resp;
     }
 
 
@@ -351,7 +357,7 @@ class Api {
         if ( !$response ) {
             $method   = 'getCoursesPaginated';
             $responsePaginated = $this->do_jsonRpc( $method );
-            if( property_exists( $responsePaginated, 'result' ) ){
+            if( is_object($responsePaginated) && property_exists( $responsePaginated, 'result' ) ){
                 $response = $this->do_jsonRpc( $method )->result;
                 set_transient( self::TRANSIENT_CORESOURCE_COURSES, $response, self::TRANSIENT_CORESOURCE_LIFETIME );
             }

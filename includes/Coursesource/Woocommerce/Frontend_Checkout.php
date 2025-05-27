@@ -10,6 +10,8 @@ use stdClass;
 class Frontend_Checkout
 {
 
+    public const DOMAIN_CHECK_MAX_USERS = 20;
+
     public static function init()
     {
         self::add_actions();
@@ -33,6 +35,28 @@ class Frontend_Checkout
             \add_action("wp_ajax_{$ajax_action}", __CLASS__ . "::{$ajax_action}", 10, 1);
             \add_action("wp_ajax_nopriv_{$ajax_action}", __CLASS__ . "::{$ajax_action}", 10, 1);
         }
+    }
+
+
+    /**
+     * To avoid excessive API requests we need to exclude some email domains
+     * @return array
+     */
+    public static function email_domains_to_exclude_from_checking()
+    {
+        $domains = [];
+        global $wpdb;
+        $maxcount = self::DOMAIN_CHECK_MAX_USERS;
+        $query = "SELECT SUBSTRING_INDEX(user_email,'@',-1) AS thedomain, COUNT('user_email') AS thecount
+            FROM {$wpdb->prefix}users
+            GROUP BY thedomain
+            HAVING thecount >= {$maxcount}
+            ORDER BY thecount DESC;";
+        $results = $wpdb->get_results($query, ARRAY_A);
+        foreach ($results as $result) {
+            $domains[] = $result['thedomain'];
+        }
+        return $domains;
     }
 
     /**
@@ -177,7 +201,7 @@ class Frontend_Checkout
         // Group does not exist...
         if (in_array($groupExists, [0, -3])) {
             $response->result = false;
-            $similarGroups = array_values( self::group_similar() );
+            $similarGroups = array_values(self::group_similar());
             $response->groups = $similarGroups;
         }
         print wp_json_encode($response);
@@ -232,13 +256,15 @@ class Frontend_Checkout
         $managers = [];
         if (!in_array($groupExists, [0, -3])) {
             $result = true;
-            $users = self::get_managers_from_same_domain($user_email);
+            $users = self::get_wordpress_users_from_same_domain($user_email);
             if (count($users) >= 1) {
                 foreach ($users as $user) {
                     //Check if these people are managers of the domain...
                     $groupExistsWithThisManager = $api->checkGroup($group_name, $user);
                     if ($groupExistsWithThisManager === 1) {
                         $managers[] = $user;
+                        // Be efficient and don't thrash the API...
+                        break;
                     }
                 }
             }
@@ -279,18 +305,25 @@ class Frontend_Checkout
      * @param $email
      * @return array
      */
-    public static function get_managers_from_same_domain($email)
+    public static function get_wordpress_users_from_same_domain($email)
     {
+        //Get domains to exclude from checking as too expensive...
+        $domains_to_ignore = self::email_domains_to_exclude_from_checking();
         //Get domain name
         $email_domain = explode('@', sanitize_email($email))[1];
-        $args = [
-            'search' => '*' . esc_attr($email_domain) . '*',
-            'search_columns' => [
-                'user_email',
-            ],
-        ];
-        $query = new \WP_User_Query($args);
-        return $query->get_results();
+
+        if( !in_array($email_domain, $domains_to_ignore) ) {
+            $args = [
+                'search' => '*' . esc_attr($email_domain) . '*',
+                'search_columns' => [
+                    'user_email',
+                ],
+            ];
+            $query = new \WP_User_Query($args);
+            return $query->get_results();
+        }
+        return [];
+
     }
 
 
