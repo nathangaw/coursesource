@@ -1,7 +1,8 @@
 <?php
 
 if ( !is_null( $coursesource_data ) ) : ?>
-	<h2><?= $company_name ?></h2>
+	<h2>Course Access Details</h2>
+	<p>Learners can access their purchased courses at: <a href="https://www.trainingacademy.online">https://www.trainingacademy.online</a> and self enrol using the enrolment key details below.</p>
 	<div style="margin-bottom: 40px;">
 		<table class="td" cellspacing="0" cellpadding="6"
 					 style="width: 100%; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;" border="1">
@@ -30,6 +31,7 @@ if ( !is_null( $coursesource_data ) ) : ?>
 		</table>
 	</div>
 
+	<!--
     <?php if ( !empty( $portal_url ) ) : ?>
         <div style="margin-bottom: 40px;">
             <p><?= __('You can access your purchased courses via our online learning portal.', 'coursesource') ?><br><br>
@@ -37,5 +39,6 @@ if ( !is_null( $coursesource_data ) ) : ?>
             </p>
         </div>
     <?php endif; ?>
+	-->
 
 <?php endif; ?>

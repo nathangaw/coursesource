@@ -12,9 +12,9 @@ class Email {
 	}
 
 	public static function add_filters() {
-        \add_action( 'woocommerce_email_order_details',  [ __CLASS__, 'add_product_access_info_to_order_email'], 5, 4 );
+        // \add_action( 'woocommerce_email_order_details',  [ __CLASS__, 'add_product_access_info_to_order_email'], 5, 4 );
 		\add_filter( 'woocommerce_email_order_meta', [ __CLASS__, 'add_keys_to_order_emails' ], 10, 3 );
-        \add_filter( 'woocommerce_email_order_meta', [ __CLASS__, 'add_portal_details_to_order_emails' ], 15, 3 );
+        // \add_filter( 'woocommerce_email_order_meta', [ __CLASS__, 'add_portal_details_to_order_emails' ], 15, 3 );
 	}
 
 	/**
@@ -38,6 +38,7 @@ class Email {
     /**
      * Add the Coursesource Portal details to the Order Completed Email
      */
+    /*
     public static function add_portal_details_to_order_emails( $order, $sent_to_admin, $plain_text ) {
         $has_courses = Order::does_order_contain_coursesource_products( $order->ID);
         if ( $has_courses ) {
@@ -48,6 +49,7 @@ class Email {
             ] );
         }
     }
+    */
 
     /**** Add message to emails based on whether product is LU or not  *******/
 
@@ -59,6 +61,7 @@ class Email {
      * @param $email
      * @return void
      */
+    /*
     public static function add_product_access_info_to_order_email( $order, $sent_to_admin, $plain_text, $email ) {
         // Only customers need to know about the delivery times.
         // https://www.businessbloomer.com/woocommerce-add-extra-content-order-email/
@@ -68,5 +71,6 @@ class Email {
         $cart_composition = Order::get_order_course_composition( $order );
         echo Template::get_template( 'order/coursesource-product-access', ['cart_content' => $cart_composition ]);
     }
+    */
 
 }
